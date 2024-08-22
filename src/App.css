@@ -1,0 +1,59 @@
+.background{
+margin:0;
+display:flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+
+}
+#quote-box{
+  width: 500px;
+  margin: 0 auto;
+  min-height: 300px;
+display: flex;
+flex-direction: column;
+justify-content:space-between ;
+background-color: rgb(210, 210, 210);
+border-radius: 10px;
+box-shadow: 5px 5px 10px black;
+text-align:left;
+}
+.quote-content{
+
+display: flex;
+flex-direction: column;
+justify-content:space-between ;
+margin: 20px;
+
+
+
+}
+#author{
+  
+text-align: right;
+}
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+ 
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #595959;
+}
+.generate-random-button {
+  display: flex;  
+  justify-content: center;
+  margin: 5px; /* Space below the Generate Random Quote button */
+}
+.emotion-buttons {
+  display: flex;
+  justify-content: center;
+  margin: 5px; /* Space between emotion buttons */
+  gap: 5px;
+}

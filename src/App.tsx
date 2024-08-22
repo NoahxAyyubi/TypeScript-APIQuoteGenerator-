@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { FaQuoteLeft, FaQuoteRight, FaClipboard } from 'react-icons/fa';
 import './App.css';
+import gsap from 'gsap';
 
 interface Quote {
   _id: string;
@@ -28,15 +29,20 @@ const fetchQuoteByTag = async (tag: string): Promise<Quote> => {
 };
 
 const getColor = (): string => {
-  const red = Math.floor(Math.random() * 128);
-  const green = Math.floor(Math.random() * 128);
-  const blue = Math.floor(Math.random() * 128);
-  return `rgb(${red},${green},${blue})`;
+  const colors = [
+    "#271918", "#762708", "#A47063", "#C49D7E",
+    "#664B36", "#846247", "#B9A389", "#ADB6B1", "#AAA494",
+    "#C2A198", "#C9B9AA", "#A6A09E", "#CFD0D2", "#D8D7D2",
+    "#648072", "#B7806C", "#B5AFAD", "#7298AD", "#AEC1D2"
+  ];
+  const randomIndex = Math.floor(Math.random() * colors.length);
+  return colors[randomIndex];
 }
 
 function App() {
   const [quote, setQuote] = useState<Quote | null>(null);
   const [color, setColor] = useState<string>(getColor());
+  const quoteRef = useRef<HTMLDivElement>(null);
 
   // Function to generate a random quote
   const generateRandomQuote = async () => {
@@ -59,14 +65,31 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    if (quote && quoteRef.current) {
+      // Get all children of quoteRef.current and animate them
+      const children = quoteRef.current.children;
+
+      // Animate each segment with stagger effect
+      gsap.fromTo(children, 
+        { opacity: 0, y: 20 }, 
+        { opacity: 1, y: 0, duration: 1, ease: 'power3.out', stagger: 0.1 }
+      );
+    }
+  }, [quote]);
+
   return (
     <div className='background' style={{ backgroundColor: color }}>
       <div id="quote-box">
         <div className="quote-content" style={{ color: color }}>
           <FaQuoteLeft size="25" style={{ marginRight: "10px" }} />
-          <h3 id="text" style={{ margin: "5px" }}>
-            {quote ? quote.content : "Noah's Quote Generator..."}
-          </h3>
+          <div id="text" ref={quoteRef} style={{ margin: "5px" }}>
+            {quote ? quote.content.split(',').map((segment, index) => (
+              <div key={index} className="segment">
+                {segment.trim()}{index < quote.content.split(',').length - 1 ? ', ' : ''}
+              </div>
+            )) : "Noah's Quote Generator..."}
+          </div>
           <FaQuoteRight size="25" style={{ marginLeft: "auto" }} />
           <h4 id="author">{quote ? quote.author : ''}</h4>
         </div>
@@ -75,7 +98,7 @@ function App() {
           <button 
             id="new-quote" 
             onClick={generateRandomQuote} 
-            style={{ borderColor: color }}>
+            style={{ backgroundColor: color }}>
             Generate Random Quote
           </button>
           <FaClipboard 
@@ -88,18 +111,18 @@ function App() {
         <div className="emotion-buttons">
           <button 
             onClick={() => handleEmotionClick('motivational')}
-            style={{ borderColor: color }}>
-            Sigma Motivation
+            style={{ backgroundColor: color }}>
+            What the sigma?
           </button>
           <button 
             onClick={() => handleEmotionClick('wisdom')}
-            style={{ borderColor: color }}>
+            style={{ backgroundColor: color }}>
             A fool, I am, so make me wise.
           </button>
           <button 
             onClick={() => handleEmotionClick('faith')}
-            style={{ borderColor: color }}>
-            Give me Faith
+            style={{ backgroundColor: color }}>
+            Give me faith
           </button>
         </div>
       </div>

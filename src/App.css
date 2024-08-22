@@ -13,7 +13,7 @@ height: 100vh;
 display: flex;
 flex-direction: column;
 justify-content:space-between ;
-background-color: rgb(210, 210, 210);
+background-color: rgb(255, 255, 255);
 border-radius: 10px;
 box-shadow: 5px 5px 10px black;
 text-align:left;
@@ -34,7 +34,7 @@ text-align: right;
 }
 button {
   padding: 10px;
-  border: 2px solid;
+  border: none;
   border-radius: 5px;
  
   color: white;
@@ -44,7 +44,7 @@ button {
 }
 
 button:hover {
-  background-color: #464646;
+  background-color: #787878;
 }
 .generate-random-button {
   display: flex;  

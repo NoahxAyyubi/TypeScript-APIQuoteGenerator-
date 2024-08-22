@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {  FaQuoteLeft, FaQuoteRight } from 'react-icons/fa';
+import {  FaQuoteLeft, FaQuoteRight, FaClipboard } from 'react-icons/fa';
 import './App.css';
 
 interface Quote {
@@ -51,7 +51,12 @@ function App() {
     setQuote(newQuote);
     setColor(getColor());
   }
-
+  const copyToClipboard = () => {
+    if (quote) {
+      navigator.clipboard.writeText(`${quote.content} - ${quote.author}`);
+      alert("Quote copied to clipboard!");
+    }
+  };
   return (
     <div className='background' style={{ backgroundColor: color }}>
       <div id="quote-box">
@@ -63,10 +68,17 @@ function App() {
           <FaQuoteRight size="30" style={{ marginLeft: "auto" }} />
           <h4 id="author">{quote ? quote.author : ''}</h4>
         </div>
+
         <div className='generate-random-button'>
           <button id="new-quote" onClick={generateRandomQuote}>
             Generate Random Quote
           </button>
+          <FaClipboard 
+            size="35" 
+            style={{ marginLeft: "10px", cursor: "pointer" }} 
+            onClick={copyToClipboard} 
+            title="Copy to clipboard" 
+          />
         </div>
         <div className="emotion-buttons">
           <button onClick={() => handleEmotionClick('motivational')}>Sigma Motivation</button>

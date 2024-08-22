@@ -65,7 +65,7 @@ function App() {
         <div className="quote-content" style={{ color: color }}>
           <FaQuoteLeft size="30" style={{ marginRight: "10px" }} />
           <h2 id="text" style={{ margin: "5px" }}>
-            {quote ? quote.content : 'Loading...'}
+            {quote ? quote.content : 'Choose...'}
           </h2>
           <FaQuoteRight size="30" style={{ marginLeft: "auto" }} />
           <h4 id="author">{quote ? quote.author : ''}</h4>

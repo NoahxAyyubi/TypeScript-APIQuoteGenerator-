@@ -88,7 +88,7 @@ function App() {
               <div key={index} className="segment">
                 {segment.trim()}{index < quote.content.split(',').length - 1 ? ', ' : ''}
               </div>
-            )) : "Noah's Quote Generator..."}
+            )) : "Noah's Aesthetic Quote Generator..."}
           </div>
           <FaQuoteRight size="25" style={{ marginLeft: "auto" }} />
           <h4 id="author">{quote ? quote.author : ''}</h4>
@@ -103,7 +103,7 @@ function App() {
           </button>
           <FaClipboard 
             size="35" 
-            style={{ marginLeft: "10px", cursor: "pointer", color: color }} 
+            style={{ cursor: "pointer", color: color }} 
             onClick={copyToClipboard} 
             title="Copy to clipboard" 
           />

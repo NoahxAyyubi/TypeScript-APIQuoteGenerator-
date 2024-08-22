@@ -72,14 +72,14 @@ function App() {
     gsap.fromTo(
       quoteMarks,
       { rotation: 0 },
-      { rotation: 360, duration: 1, stagger: 0.2 }
+      { rotation: 360, duration: 1.5}
     );
 
     // Animate the text segments
     gsap.fromTo(
       segments,
-      { opacity: 0, y: 20 }, // Start at opacity 0 and y 20px
-      { opacity: 1, y: 0, duration: 1, stagger: 0.2 } // Animate to opacity 1 and y 0px with stagger
+      { opacity: 0, y: 10 }, // Start at opacity 0 and y 20px
+      { opacity: 1, y: 0, duration: .5, ease: "power3.out", stagger: .5 } // Animate to opacity 1 and y 0px with stagger
     );
   }, [quote]);
 

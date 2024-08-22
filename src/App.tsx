@@ -63,11 +63,11 @@ function App() {
     <div className='background' style={{ backgroundColor: color }}>
       <div id="quote-box">
         <div className="quote-content" style={{ color: color }}>
-          <FaQuoteLeft size="30" style={{ marginRight: "10px" }} />
-          <h2 id="text" style={{ margin: "5px" }}>
+          <FaQuoteLeft size="25" style={{ marginRight: "10px" }} />
+          <h3 id="text" style={{ margin: "5px" }}>
             {quote ? quote.content : "Noah's Quote Generator..."}
-          </h2>
-          <FaQuoteRight size="30" style={{ marginLeft: "auto" }} />
+          </h3>
+          <FaQuoteRight size="25" style={{ marginLeft: "auto" }} />
           <h4 id="author">{quote ? quote.author : ''}</h4>
         </div>
 

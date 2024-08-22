@@ -7,7 +7,7 @@ height: 100vh;
 
 }
 #quote-box{
-  width: 500px;
+  width: 400px;
   margin: 0 auto;
   min-height: 300px;
 display: flex;
@@ -23,7 +23,7 @@ text-align:left;
 display: flex;
 flex-direction: column;
 justify-content:space-between ;
-margin: 20px;
+margin: 15px;
 
 
 
@@ -33,12 +33,12 @@ margin: 20px;
 text-align: right;
 }
 button {
-  padding: 10px 15px;
+  padding: 10px;
   border: 2px solid;
   border-radius: 5px;
  
   color: white;
-  font-size: 15px;
+  font-size: 14px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }

@@ -138,7 +138,7 @@ function App() {
           <button 
             onClick={() => handleEmotionClick('faith')}
             style={{ backgroundColor: color }}>
-            Give me faith
+            Give me faith.
           </button>
         </div>
       </div>

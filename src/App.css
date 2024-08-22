@@ -19,7 +19,7 @@ box-shadow: 5px 5px 10px black;
 text-align:left;
 }
 .quote-content{
-
+height: 230px;
 display: flex;
 flex-direction: column;
 justify-content:space-between ;
@@ -39,12 +39,12 @@ button {
  
   color: white;
   font-size: 14px;
-  cursor: pointer;
+  
   transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: #787878;
+  background-color: #643131;
 }
 .generate-random-button {
   display: flex;  

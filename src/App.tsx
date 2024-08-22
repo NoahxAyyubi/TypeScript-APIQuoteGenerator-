@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {  FaQuoteLeft, FaQuoteRight, FaClipboard } from 'react-icons/fa';
+import { FaQuoteLeft, FaQuoteRight, FaClipboard } from 'react-icons/fa';
 import './App.css';
 
 interface Quote {
@@ -51,12 +51,14 @@ function App() {
     setQuote(newQuote);
     setColor(getColor());
   }
+
   const copyToClipboard = () => {
     if (quote) {
       navigator.clipboard.writeText(`${quote.content} - ${quote.author}`);
       alert("Quote copied to clipboard!");
     }
   };
+
   return (
     <div className='background' style={{ backgroundColor: color }}>
       <div id="quote-box">
@@ -70,20 +72,35 @@ function App() {
         </div>
 
         <div className='generate-random-button'>
-          <button id="new-quote" onClick={generateRandomQuote}>
+          <button 
+            id="new-quote" 
+            onClick={generateRandomQuote} 
+            style={{ borderColor: color }}>
             Generate Random Quote
           </button>
           <FaClipboard 
             size="35" 
-            style={{ marginLeft: "10px", cursor: "pointer" }} 
+            style={{ marginLeft: "10px", cursor: "pointer", color: color }} 
             onClick={copyToClipboard} 
             title="Copy to clipboard" 
           />
         </div>
         <div className="emotion-buttons">
-          <button onClick={() => handleEmotionClick('motivational')}>Sigma Motivation</button>
-          <button onClick={() => handleEmotionClick('wisdom')}>A fool I am make me wise.</button>
-          <button onClick={() => handleEmotionClick('faith')}>Give me Faith</button>
+          <button 
+            onClick={() => handleEmotionClick('motivational')}
+            style={{ borderColor: color }}>
+            Sigma Motivation
+          </button>
+          <button 
+            onClick={() => handleEmotionClick('wisdom')}
+            style={{ borderColor: color }}>
+            A fool, I am, so make me wise.
+          </button>
+          <button 
+            onClick={() => handleEmotionClick('faith')}
+            style={{ borderColor: color }}>
+            Give me Faith
+          </button>
         </div>
       </div>
     </div>

@@ -42,7 +42,6 @@ const getColor = (): string => {
 function App() {
   const [quote, setQuote] = useState<Quote | null>(null);
   const [color, setColor] = useState<string>(getColor());
-  // const spanRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
   // Function to generate a random quote
   const generateRandomQuote = async () => {
@@ -67,31 +66,47 @@ function App() {
 
   useEffect(() => {
     const segments = document.querySelectorAll('.segment');
-  
+    const quoteMarks = document.querySelectorAll('.quote-mark');
+
+    // Animate the quotation marks
+    gsap.fromTo(
+      quoteMarks,
+      { rotation: 0 },
+      { rotation: 360, duration: 1, stagger: 0.2 }
+    );
+
+    // Animate the text segments
     gsap.fromTo(
       segments,
       { opacity: 0, y: 20 }, // Start at opacity 0 and y 20px
-      { opacity: 1, y: 0, duration: 1, stagger: 0.7 } // Animate to opacity 1 and y 0px with stagger
+      { opacity: 1, y: 0, duration: 1, stagger: 0.2 } // Animate to opacity 1 and y 0px with stagger
     );
   }, [quote]);
-    
-  
+
   return (
     <div className='background' style={{ backgroundColor: color }}>
       <div id="quote-box">
         <div className="quote-content" style={{ color: color }}>
-          <FaQuoteLeft size="25" style={{ marginRight: "10px" }} />
+          <FaQuoteLeft 
+            size="25" 
+            style={{ marginRight: "10px" }} 
+            className="quote-mark"
+          />
           <div id="text" style={{ margin: "5px" }}>
-  {quote ? quote.content.split(',').map((segment, index) => (
-    <span
-      key={index}
-      className="segment"
-    >
-      {segment}{index < quote.content.split(',').length - 1 ? ', ' : ''}
-    </span>
-  )) : "Noah's Aesthetic Quote Generator..."}
-</div>
-          <FaQuoteRight size="25" style={{ marginLeft: "auto" }} />
+            {quote ? quote.content.split(',').map((segment, index) => (
+              <span
+                key={index}
+                className="segment"
+              >
+                {segment}{index < quote.content.split(',').length - 1 ? ', ' : ''}
+              </span>
+            )) : "Noah's Aesthetic Quote Generator..."}
+          </div>
+          <FaQuoteRight 
+            size="25" 
+            style={{ marginLeft: "auto" }} 
+            className="quote-mark"
+          />
           <h5 id="author">{quote ? quote.author : ''}</h5>
         </div>
 

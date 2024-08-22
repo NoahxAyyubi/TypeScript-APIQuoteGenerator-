@@ -8,9 +8,9 @@ height: 100vh;
 }
 #quote-box{
   font-family: 'Roboto Mono';
-  width: 400px;
+  width: 380px;
   margin: 0 auto;
-  min-height: 300px;
+  
 display: flex;
 flex-direction: column;
 justify-content:space-between ;
@@ -20,7 +20,7 @@ box-shadow: 5px 5px 10px black;
 text-align:left;
 }
 .quote-content{
-height: 230px;
+height: 250px;
 display: flex;
 flex-direction: column;
 justify-content:space-between ;
@@ -58,4 +58,10 @@ button:hover {
   justify-content: center;
   margin: 5px; /* Space between emotion buttons */
   gap: 5px;
+}
+.segment {
+  display: inline-block; /* Ensure each span behaves like an inline block for transform animations */
+  /* Initial Y position */
+  
+ 
 }

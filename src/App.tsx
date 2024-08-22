@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { FaQuoteLeft, FaQuoteRight, FaClipboard } from 'react-icons/fa';
 import './App.css';
 import gsap from 'gsap';
@@ -42,7 +42,7 @@ const getColor = (): string => {
 function App() {
   const [quote, setQuote] = useState<Quote | null>(null);
   const [color, setColor] = useState<string>(getColor());
-  const quoteRef = useRef<HTMLDivElement>(null);
+  // const spanRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
   // Function to generate a random quote
   const generateRandomQuote = async () => {
@@ -66,32 +66,33 @@ function App() {
   };
 
   useEffect(() => {
-    if (quote && quoteRef.current) {
-      // Get all children of quoteRef.current and animate them
-      const children = quoteRef.current.children;
-
-      // Animate each segment with stagger effect
-      gsap.fromTo(children, 
-        { opacity: 0, y: 20 }, 
-        { opacity: 1, y: 0, duration: 1, ease: 'power3.out', stagger: 0.1 }
-      );
-    }
+    const segments = document.querySelectorAll('.segment');
+  
+    gsap.fromTo(
+      segments,
+      { opacity: 0, y: 20 }, // Start at opacity 0 and y 20px
+      { opacity: 1, y: 0, duration: 1, stagger: 0.7 } // Animate to opacity 1 and y 0px with stagger
+    );
   }, [quote]);
-
+    
+  
   return (
     <div className='background' style={{ backgroundColor: color }}>
       <div id="quote-box">
         <div className="quote-content" style={{ color: color }}>
           <FaQuoteLeft size="25" style={{ marginRight: "10px" }} />
-          <div id="text" ref={quoteRef} style={{ margin: "5px" }}>
-            {quote ? quote.content.split(',').map((segment, index) => (
-              <div key={index} className="segment">
-                {segment.trim()}{index < quote.content.split(',').length - 1 ? ', ' : ''}
-              </div>
-            )) : "Noah's Aesthetic Quote Generator..."}
-          </div>
+          <div id="text" style={{ margin: "5px" }}>
+  {quote ? quote.content.split(',').map((segment, index) => (
+    <span
+      key={index}
+      className="segment"
+    >
+      {segment}{index < quote.content.split(',').length - 1 ? ', ' : ''}
+    </span>
+  )) : "Noah's Aesthetic Quote Generator..."}
+</div>
           <FaQuoteRight size="25" style={{ marginLeft: "auto" }} />
-          <h4 id="author">{quote ? quote.author : ''}</h4>
+          <h5 id="author">{quote ? quote.author : ''}</h5>
         </div>
 
         <div className='generate-random-button'>

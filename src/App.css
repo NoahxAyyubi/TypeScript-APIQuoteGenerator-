@@ -42,7 +42,7 @@ button {
   color: white;
   font-size: 13px;
   
-  transition: background-color 0.3s ease;
+ 
 }
 
 button:hover {
@@ -51,12 +51,23 @@ button:hover {
 .generate-random-button {
   display: flex;  
   justify-content: center;
-  margin-left: 50px;
+  
+  
+}
+.generate-random-button button {
+ width: 100%;
+  margin: 0 5px 5px 5px;
+}
+.clipboard {
+  display: flex;  
+  justify-content: center;
+  transform: translateY(-10px); /* Adjust the value as needed */
+
 }
 .emotion-buttons {
   display: flex;
   justify-content: center;
-  margin: 5px; /* Space between emotion buttons */
+  margin: 5px;
   gap: 5px;
 }
 .segment {

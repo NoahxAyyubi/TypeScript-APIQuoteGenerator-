@@ -67,6 +67,16 @@ function App() {
   useEffect(() => {
     const segments = document.querySelectorAll('.segment');
     const quoteMarks = document.querySelectorAll('.quote-mark');
+    const clipboardIcon = document.querySelector('.clipboard');
+ // Make the device vibrate
+ if ('vibrate' in navigator) {
+   navigator.vibrate(200); // Vibrate for 200 milliseconds
+   
+ }
+    const audio = new Audio('/assets/bubble-sound-43207.mp3');
+    audio.currentTime = 0;
+    audio.play();
+    
 
     // Animate the quotation marks
     gsap.fromTo(
@@ -81,6 +91,16 @@ function App() {
       { opacity: 0, y: 10 }, // Start at opacity 0 and y 20px
       { opacity: 1, y: 0, duration: .5, ease: "power3.out", stagger: .5 } // Animate to opacity 1 and y 0px with stagger
     );
+
+    gsap.to(clipboardIcon, {
+      keyframes: [
+        { rotation: 50, duration: 0.5, ease: "power1.inOut" }, // Swing right
+        { rotation: -60, duration: 0.5, ease: "power2.inOut" }, // Swing left
+        { rotation: 20, duration: 0.5, ease: "power2.inOut" } ,   // Return to 0
+        { rotation: 0, duration: 0.5, ease: "power1.inOut" }    // Return to 0
+      ],
+    
+    });
   }, [quote]);
 
   return (
@@ -110,13 +130,7 @@ function App() {
           <h5 id="author">{quote ? quote.author : ''}</h5>
         </div>
 
-        <div className='generate-random-button'>
-          <button 
-            id="new-quote" 
-            onClick={generateRandomQuote} 
-            style={{ backgroundColor: color }}>
-            Generate Random Quote
-          </button>
+        <div className="clipboard" >
           <FaClipboard 
             size="35" 
             style={{ cursor: "pointer", color: color }} 
@@ -140,7 +154,15 @@ function App() {
             style={{ backgroundColor: color }}>
             Give me faith.
           </button>
-        </div>
+        </div >
+        <div className='generate-random-button'>
+          <button 
+            id="new-quote" 
+            onClick={generateRandomQuote} 
+            style={{ backgroundColor: color }}>
+            Generate Random Quote
+          </button>
+          </div>
       </div>
     </div>
   );

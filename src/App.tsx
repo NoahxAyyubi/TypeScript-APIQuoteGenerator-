@@ -74,7 +74,7 @@ function App() {
    
  }
     const audio = new Audio('/assets/bubble-sound-43207.mp3');
-    audio.currentTime = 0;
+    audio.currentTime = 0.5;
     audio.play();
     
 
